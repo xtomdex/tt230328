@@ -24,38 +24,38 @@ final class UserRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('u');
 
-        if (null !== $filter->isActive) {
+        if (null !== $filter->is_active) {
             $qb
                 ->andWhere('u.isActive = :isActive')
-                ->setParameter('isActive', (bool) $filter->isActive)
+                ->setParameter('isActive', (bool) $filter->is_active)
             ;
         }
 
-        if (null !== $filter->isMember) {
+        if (null !== $filter->is_member) {
             $qb
                 ->andWhere('u.isMember = :isMember')
-                ->setParameter('isMember', (bool) $filter->isMember)
+                ->setParameter('isMember', (bool) $filter->is_member)
             ;
         }
 
-        if ($filter->userType) {
+        if ($filter->user_type) {
             $qb
                 ->andWhere('u.userType IN (:userTypes)')
-                ->setParameter('userTypes', $filter->userType)
+                ->setParameter('userTypes', $filter->user_type)
             ;
         }
 
-        if ($filter->lastLoginFrom) {
+        if ($filter->last_login_from) {
             $qb
                 ->andWhere('u.lastLoginAt > :lastLoginFrom')
-                ->setParameter('lastLoginFrom', $filter->lastLoginFrom)
+                ->setParameter('lastLoginFrom', $filter->last_login_from)
             ;
         }
 
-        if ($filter->lastLoginTo) {
+        if ($filter->last_login_to) {
             $qb
                 ->andWhere('u.lastLoginAt < :lastLoginTo')
-                ->setParameter('lastLoginTo', $filter->lastLoginTo)
+                ->setParameter('lastLoginTo', $filter->last_login_to)
             ;
         }
 

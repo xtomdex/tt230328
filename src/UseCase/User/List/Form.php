@@ -17,29 +17,27 @@ class Form extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isActive', IntegerType::class, [
+            ->add('is_active', IntegerType::class, [
                 'required' => false
             ])
-            ->add('isMember', IntegerType::class, [
+            ->add('is_member', IntegerType::class, [
                 'required' => false
             ])
-            ->add('userType', ChoiceType::class, [
+            ->add('user_type', ChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
                 'choices' => array_flip(User::getTypes()),
                 'required' => false
             ])
-            ->add('lastLoginFrom', DateType::class, [
+            ->add('last_login_from', DateType::class, [
                 'required' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                //'html5' => true
+                'format' => 'yyyy-MM-dd'
             ])
-            ->add('lastLoginTo', DateType::class, [
+            ->add('last_login_to', DateType::class, [
                 'required' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                //'html5' => true,
+                'format' => 'yyyy-MM-dd'
             ])
         ;
     }

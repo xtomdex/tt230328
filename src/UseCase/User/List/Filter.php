@@ -6,9 +6,9 @@ namespace App\UseCase\User\List;
 
 class Filter
 {
-    public ?int $isActive = null;
-    public ?int $isMember = null;
-    public ?array $userType = null;
-    public ?\DateTime $lastLoginFrom = null;
-    public ?\DateTime $lastLoginTo = null;
+    public ?int $is_active = null;
+    public ?int $is_member = null;
+    public ?array $user_type = null;
+    public ?\DateTime $last_login_from = null;
+    public ?\DateTime $last_login_to = null;
 }
