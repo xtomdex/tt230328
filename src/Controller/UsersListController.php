@@ -32,7 +32,7 @@ use Symfony\Component\HttpFoundation\Response;
     schema: new OA\Schema(type: 'integer')
 )]
 #[OA\Parameter(
-    name: 'user_type',
+    name: 'user_type[]',
     description: 'The field to filter users by their types (multiple values are allowed)',
     in: 'query',
     required: false,

@@ -102,7 +102,7 @@ final class User
         return $this;
     }
 
-    public function isMember(): bool
+    public function getIsMember(): bool
     {
         return $this->isMember;
     }
