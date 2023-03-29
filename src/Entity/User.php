@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Index(columns: ["is_active"], name: "is_active_idx")]
 final class User
 {
+    public const TYPE_1 = 1;
+    public const TYPE_2 = 2;
+    public const TYPE_3 = 3;
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: "integer")]
@@ -153,5 +157,14 @@ final class User
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_1 => 'Type 1',
+            self::TYPE_2 => 'Type 2',
+            self::TYPE_3 => 'Type 3'
+        ];
     }
 }
