@@ -22,25 +22,25 @@ To deploy this project turn on Docker on your machine and run
 ## API Reference
 
 #### Host
-```http
+```bash
   http://localhost:8888
 ```
 
 #### Swagger Documentation
 
-```http
+```bash
   GET /docs
 ```
 
 #### Homepage
 
-```http
+```bash
   GET /
 ```
 
 #### Get all users with filter
 
-```http
+```bash
   GET /users
 ```
 All parameters are **optional**.
