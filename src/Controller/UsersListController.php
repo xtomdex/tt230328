@@ -4,32 +4,28 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\UseCase\User\List;
 
-#[Route(path: 'users', name: 'users_list', methods: ['GET'])]
-final class UsersListController extends AbstractController
+#[Rest\Route(path: 'users', name: 'users_list', methods: ['GET'])]
+#[Rest\View(serializerGroups: ['users_list', 'paginate'])]
+final class UsersListController extends AbstractFOSRestController
 {
-    public function __invoke(Request $request, UserRepository $userRepository): Response
+    public function __invoke(Request $request, UserRepository $userRepository): View
     {
         $filter = new List\Filter();
         $form = $this->createForm(List\Form::class, $filter);
         $form->handleRequest($request);
 
-        $users = $userRepository->findAllWithFilter($filter);
-        return $this->json(['count' => count($users), 'users' => array_map(function (User $user) {
-            return [
-                'id' => $user->getId(),
-                'type' => $user->getUserType(),
-                'isActive' => $user->getIsActive(),
-                'lastLoginAt' => $user->getLastLoginAt()->format('Y-m-d')
-            ];
-        }, $users)]);
+        $page = $request->query->get('page', 1);
+        $limit = $request->query->get('limit', 25);
 
+        $users = $userRepository->findAllWithFilter($filter, $page, $limit);
+
+        return $this->view($users);
     }
 }

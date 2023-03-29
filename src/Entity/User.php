@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: "test_users")]
@@ -19,27 +20,34 @@ final class User
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: "integer")]
+    #[JMS\Groups(['users_list'])]
     private ?int $id = null;
 
     #[ORM\Column(type: "string", length: 20)]
+    #[JMS\Groups(['users_list'])]
     private string $username = '';
 
     #[ORM\Column(type: "string", length: 75)]
+    #[JMS\Groups(['users_list'])]
     private string $email = '';
 
     #[ORM\Column(type: "string")]
     private string $password;
 
     #[ORM\Column(type: "boolean")]
+    #[JMS\Groups(['users_list'])]
     private bool $isMember = false;
 
     #[ORM\Column(type: "boolean", nullable: true)]
+    #[JMS\Groups(['users_list'])]
     private ?bool $isActive = null;
 
     #[ORM\Column(type: "integer")]
+    #[JMS\Groups(['users_list'])]
     private int $userType;
 
     #[ORM\Column(type: "datetime_immutable", nullable: true)]
+    #[JMS\Groups(['users_list'])]
     private ?\DateTimeImmutable $lastLoginAt = null;
 
     #[ORM\Column(type: "datetime_immutable")]

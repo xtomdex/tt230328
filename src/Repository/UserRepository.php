@@ -8,15 +8,19 @@ use App\UseCase\User\List\Filter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\User;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 final class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
+    public function __construct(
+        private readonly PaginatorInterface $paginator,
+        ManagerRegistry $registry
+    ) {
         parent::__construct($registry, User::class);
     }
 
-    public function findAllWithFilter(Filter $filter): array
+    public function findAllWithFilter(Filter $filter, int $page = 1, int $limit = 25): PaginationInterface
     {
         $qb = $this->createQueryBuilder('u');
 
@@ -55,6 +59,8 @@ final class UserRepository extends ServiceEntityRepository
             ;
         }
 
-        return $qb->getQuery()->getResult();
+        $query = $qb->getQuery();
+
+        return $this->paginator->paginate($query, $page, $limit);
     }
 }
