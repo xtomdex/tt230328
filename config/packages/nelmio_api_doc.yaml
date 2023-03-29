@@ -1,0 +1,13 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: TestApp
+            description: This is a test app!
+            version: 1.0.0
+        tags:
+            - name: Users
+              description: Users section
+    areas:
+        path_patterns:
+            - ^/users
+
