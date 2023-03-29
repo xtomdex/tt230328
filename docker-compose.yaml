@@ -26,7 +26,8 @@ services:
       - composer:/home/app/cache/composer
 
   mysql:
-    image: mysql:8.0
+    platform: linux/x86_64
+    image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: testapp
