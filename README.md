@@ -55,3 +55,18 @@ All parameters are **optional**.
 | `last_login_from` | `date(YYYY-MM-DD)` | Filter users last logined after provided date.|
 | `last_login_to` | `date(YYYY-MM-DD)` | Filter users last logined before provided date.|
 
+## Quiz
+
+Quiz tasks solutions are located in **quiz** directory of project root.
+
+```bash
+├── bin
+├── config
+...
+├── quiz
+│   ├── 1.php
+│   ├── 2.php
+├── src
+...
+└
+```
